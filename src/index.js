@@ -1,7 +1,7 @@
 /*
  * @Author: imali
  * @Date: 2022-03-28 14:02:58
- * @LastEditTime: 2022-03-28 14:17:50
+ * @LastEditTime: 2022-03-28 15:14:05
  * @LastEditors: imali
  * @Description:
  */
@@ -20,7 +20,7 @@ const components = [
 ];
 
 // will install the plugin only once
-const install = function (vue) {
+const install = function (Vue) {
 	components.forEach((component) => {
 		Vue.component(component.name, component);
 	});
