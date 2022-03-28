@@ -66,9 +66,7 @@
 </template>
 <script>
 import { computed, defineComponent } from "@vue/composition-api";
-import * as lodash from "lodash";
-
-const { pickBy, omit, keys, isFunction, isNil } = lodash;
+import { pickBy, omit, keys, isFunction, isNil } from "lodash";
 
 export default defineComponent({
 	name: "p-table",

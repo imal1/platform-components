@@ -1,7 +1,7 @@
 /*
  * @Author: imali
  * @Date: 2022-03-28 14:02:28
- * @LastEditTime: 2022-03-28 15:44:58
+ * @LastEditTime: 2022-03-28 16:28:05
  * @LastEditors: imali
  * @Description:
  */
@@ -15,7 +15,7 @@ export default {
 	input: "src/index.js",
 	output: {
 		file: "bundle.js",
-		format: "cjs",
+		format: "umd",
 		globals: {
 			vue: "Vue",
 		},

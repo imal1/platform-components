@@ -1,7 +1,7 @@
 <!--
  * @Author: imali
  * @Date: 2022-03-10 01:10:22
- * @LastEditTime: 2022-03-28 16:20:59
+ * @LastEditTime: 2022-03-28 16:32:57
  * @LastEditors: imali
  * @Description: 
 -->
@@ -28,9 +28,7 @@
 </template>
 <script>
 import { reactive, ref } from "@vue/composition-api";
-import * as lodash from "lodash";
-
-const { omit, keys, isFunction, pickBy, isBoolean } = lodash;
+import { omit, keys, isFunction, pickBy, isBoolean } from "lodash";
 
 export default {
 	name: "p-button-dialog",
