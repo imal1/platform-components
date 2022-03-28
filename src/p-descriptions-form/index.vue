@@ -1,7 +1,7 @@
 <!--
  * @Author: imali
  * @Date: 2022-02-21 20:03:59
- * @LastEditTime: 2022-03-28 16:14:27
+ * @LastEditTime: 2022-03-28 16:21:28
  * @LastEditors: imali
  * @Description:
 -->
@@ -52,6 +52,7 @@ import * as lodash from "lodash";
 const { omit, keys, isFunction, pickBy } = lodash;
 
 export default defineComponent({
+	name: "p-descriptions-form",
 	props: {
 		items: {
 			type: Array,

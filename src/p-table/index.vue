@@ -71,6 +71,7 @@ import * as lodash from "lodash";
 const { pickBy, omit, keys, isFunction, isNil } = lodash;
 
 export default defineComponent({
+	name: "p-table",
 	props: {
 		columns: {
 			type: Array,

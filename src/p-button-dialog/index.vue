@@ -1,7 +1,7 @@
 <!--
  * @Author: imali
  * @Date: 2022-03-10 01:10:22
- * @LastEditTime: 2022-03-28 16:14:15
+ * @LastEditTime: 2022-03-28 16:20:59
  * @LastEditors: imali
  * @Description: 
 -->
@@ -33,6 +33,7 @@ import * as lodash from "lodash";
 const { omit, keys, isFunction, pickBy, isBoolean } = lodash;
 
 export default {
+	name: "p-button-dialog",
 	props: {
 		button: {
 			type: Object,

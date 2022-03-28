@@ -4,7 +4,7 @@
  * @Author: imali
  * @Date: 2021-07-14 13:30:41
  * @LastEditors: imali
- * @LastEditTime: 2022-03-28 16:15:13
+ * @LastEditTime: 2022-03-28 16:21:38
 -->
 
 <template>
@@ -50,6 +50,7 @@ import DatePicker from "../p-date-picker/index.vue";
 const { omit, keys, isFunction, pickBy, isArray } = lodash;
 
 export default defineComponent({
+	name: "p-form",
 	components: { DatePicker },
 	props: {
 		items: {

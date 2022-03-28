@@ -1,7 +1,7 @@
 <!--
  * @Author: imali
  * @Date: 2021-10-14 09:35:17
- * @LastEditTime: 2022-03-28 16:10:40
+ * @LastEditTime: 2022-03-28 16:21:15
  * @LastEditors: imali
  * @Description:
 -->
@@ -60,6 +60,7 @@ const DEFAULT_FORMATS = {
 };
 
 export default defineComponent({
+	name: "p-date-picker",
 	inheritAttrs: false,
 	props: {
 		type: {
