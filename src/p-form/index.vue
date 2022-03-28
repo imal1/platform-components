@@ -4,7 +4,7 @@
  * @Author: imali
  * @Date: 2021-07-14 13:30:41
  * @LastEditors: imali
- * @LastEditTime: 2022-03-28 14:24:22
+ * @LastEditTime: 2022-03-28 16:15:13
 -->
 
 <template>
@@ -44,8 +44,10 @@
 
 <script>
 import { computed, defineComponent } from "@vue/composition-api";
-import { omit, keys, isFunction, pickBy, isArray } from "lodash";
+import * as lodash from "lodash";
 import DatePicker from "../p-date-picker/index.vue";
+
+const { omit, keys, isFunction, pickBy, isArray } = lodash;
 
 export default defineComponent({
 	components: { DatePicker },
