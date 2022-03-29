@@ -1,7 +1,7 @@
 <!--
  * @Author: imali
  * @Date: 2022-03-10 01:10:22
- * @LastEditTime: 2022-03-29 13:20:58
+ * @LastEditTime: 2022-03-29 13:25:32
  * @LastEditors: imali
  * @Description: 
 -->
@@ -53,7 +53,7 @@ export default {
 		buttonEvents() {
 			const events = pickBy(this.button, isFunction);
 			events.click = async () => {
-				if (click) {
+				if (events.click) {
 					await events.click();
 				}
 				this.dialogVisible = true;
