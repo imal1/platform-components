@@ -1,7 +1,7 @@
 <!--
  * @Author: imali
  * @Date: 2022-03-10 01:10:22
- * @LastEditTime: 2022-03-28 16:32:57
+ * @LastEditTime: 2022-03-29 11:02:49
  * @LastEditors: imali
  * @Description: 
 -->
@@ -27,7 +27,6 @@
 	</span>
 </template>
 <script>
-import { reactive, ref } from "@vue/composition-api";
 import { omit, keys, isFunction, pickBy, isBoolean } from "lodash";
 
 export default {
@@ -38,31 +37,25 @@ export default {
 			required: true,
 		},
 	},
-	setup(props, ctx) {
-		const visible = ref(
-			isBoolean(ctx.attrs.visible) ? ctx.attrs.visible : false
-		);
-		const buttonProps = reactive(props.button);
-		const buttonEvents = pickBy(buttonProps, isFunction);
-		const buttonAttrs = omit(buttonProps, keys(buttonEvents));
-		const { click } = buttonEvents;
-
-		buttonEvents.click = async () => {
-			if (click) {
-				await click();
-			}
-			visible.value = true;
-		};
-
-		if (!ctx.slots.title) {
-			ctx.attrs["title"] = ctx.attrs["title"] || buttonProps.label;
-		}
-
+	data() {
 		return {
-			visible,
-			buttonAttrs,
-			buttonEvents,
+			visible: isBoolean(this.$attrs.visible) ? this.$attrs.visible : false,
 		};
+	},
+	computed: {
+		buttonEvents() {
+			const events = pickBy(this.button, isFunction);
+			events.click = async () => {
+				if (click) {
+					await events.click();
+				}
+				this.visible = true;
+			};
+			return events;
+		},
+		buttonAttrs() {
+			return omit(this.button, keys(this.buttonEvents));
+		},
 	},
 };
 </script>

@@ -4,7 +4,7 @@
  * @Author: imali
  * @Date: 2021-07-14 13:30:41
  * @LastEditors: imali
- * @LastEditTime: 2022-03-28 16:33:39
+ * @LastEditTime: 2022-03-29 11:03:29
 -->
 
 <template>
@@ -43,11 +43,10 @@
 </template>
 
 <script>
-import { computed, defineComponent } from "@vue/composition-api";
 import { omit, keys, isFunction, pickBy, isArray } from "lodash";
-import DatePicker from "../p-date-picker/index.vue";
+import DatePicker from "./p-date-picker.vue";
 
-export default defineComponent({
+export default {
 	name: "p-form",
 	components: { DatePicker },
 	props: {
@@ -61,40 +60,39 @@ export default defineComponent({
 			default: () => ({}),
 		},
 	},
-	setup(props) {
-		// 获取各栏属性
-		const formItems = computed(() =>
-			props.items.map((item) => {
+	data() {
+		return {
+			isArray,
+		};
+	},
+	computed: {
+		formItems() {
+			return this.items.map((item) => {
 				const { content, ...otherItem } = item;
 				const columnEvents = pickBy(otherItem, isFunction);
-				const columnAttrs = omit(otherItem, keys(columnEvents.value));
+				const columnAttrs = omit(otherItem, keys(columnEvents));
 				item = { content, columnAttrs, columnEvents };
 				// 获取输入框属性
 				if (item.content?.is) {
 					const { is, ...otherContent } = content;
 					const contentEvents = pickBy(otherContent, isFunction);
-					const contentAttrs = omit(otherContent, keys(contentEvents.value));
+					const contentAttrs = omit(otherContent, keys(contentEvents));
 					item.content = { is, contentEvents, contentAttrs };
 				} else if (isArray(item.content)) {
 					item.content.forEach((c, i) => {
 						const { is, text, ...otherContent } = c;
 						const contentEvents = pickBy(otherContent, isFunction);
-						const contentAttrs = omit(otherContent, keys(contentEvents.value));
+						const contentAttrs = omit(otherContent, keys(contentEvents));
 						item.content[i] = { is, text, contentEvents, contentAttrs };
 					});
 				}
 				return item;
-			})
-		);
-
-		return {
-			formItems,
-			isArray,
-		};
+			});
+		},
 	},
-});
+};
 </script>
-<style scoped>
+<style lang="scss" scoped>
 ::v-deep .el-range-separator {
 	min-width: 18px;
 }

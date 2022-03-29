@@ -1,13 +1,10 @@
 /*
  * @Author: imali
  * @Date: 2022-03-28 14:02:58
- * @LastEditTime: 2022-03-29 10:00:06
+ * @LastEditTime: 2022-03-29 10:39:34
  * @LastEditors: imali
  * @Description:
  */
-import VueCompositionApi from "@vue/composition-api";
-import ElementUI from "element-ui";
-
 import PForm from "./p-form/index.vue";
 import PTable from "./p-table/index.vue";
 import PDatePicker from "./p-date-picker/index.vue";
@@ -23,10 +20,7 @@ const components = [
 ];
 
 // will install the plugin only once
-const install = function (Vue, opt) {
-	Vue.use(VueCompositionApi);
-	Vue.use(ElementUI, opt);
-
+const install = function (Vue) {
 	components.forEach((component) => {
 		Vue.component(component.name, component);
 	});

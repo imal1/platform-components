@@ -1,7 +1,7 @@
 /*
  * @Author: imali
  * @Date: 2022-03-28 14:02:28
- * @LastEditTime: 2022-03-29 09:37:27
+ * @LastEditTime: 2022-03-29 11:16:44
  * @LastEditors: imali
  * @Description:
  */
@@ -34,5 +34,5 @@ export default {
 		}),
 		// terser(),
 	],
-	external: ["vue", "@vue/composition-api", "lodash", "dayjs", "element-ui"],
+	external: ["vue", "lodash", "dayjs", "element-ui"],
 };

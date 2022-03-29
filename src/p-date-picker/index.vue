@@ -1,14 +1,14 @@
 <!--
  * @Author: imali
  * @Date: 2021-10-14 09:35:17
- * @LastEditTime: 2022-03-28 18:08:02
+ * @LastEditTime: 2022-03-29 11:13:31
  * @LastEditors: imali
  * @Description:
 -->
 <template>
 	<div ref="p-date-picker">
 		<el-date-picker
-			v-model="valueModel"
+			v-model="value"
 			v-bind="{
 				style: type === 'quarter' ? { width: '116px' } : undefined,
 				type: type === 'quarter' ? 'year' : type,
@@ -37,13 +37,6 @@
 </template>
 
 <script>
-import {
-	defineComponent,
-	ref,
-	watch,
-	inject,
-	computed,
-} from "@vue/composition-api";
 import dayjs from "dayjs";
 
 const DEFAULT_FORMATS = {
@@ -59,7 +52,7 @@ const DEFAULT_FORMATS = {
 	quarter: "yyyy",
 };
 
-export default defineComponent({
+export default {
 	name: "p-date-picker",
 	inheritAttrs: false,
 	props: {
@@ -72,71 +65,72 @@ export default defineComponent({
 			default: () => "",
 		},
 	},
-	setup(props, ctx) {
-		const valueFormat = computed(() => DEFAULT_FORMATS[props.type]);
-		const pickerType = computed(() => props.type);
-		const quarterModel = ref(
-			(pickerType.value === "quarter" && props.value.match("q")
-				? props.value.split("q")[1]
-				: dayjs(props.value).quarter().toString()) || "1"
-		);
-		const valueModel = ref(props.value);
-		const elForm = inject < any > "elForm";
-		const elFormItem = inject < any > "elFormItem";
-
-		watch(
-			[valueModel, pickerType, quarterModel],
-			([newValue, newType, newQuarter], [oldValue, oldType, oldQuarter]) => {
-				const yearVal = dayjs(newValue.split("q")[0]).format("YYYY");
-
-				if (newQuarter !== oldQuarter) {
-					newValue = `${yearVal}q${newQuarter}`;
-				}
-
-				if (newValue !== oldValue && newType === "quarter") {
-					newValue = `${yearVal}q${newQuarter}`;
-				}
-
-				if (oldType !== newType) {
-					switch (newType) {
-						case "year": {
-							newValue = yearVal;
-							break;
-						}
-						case "quarter": {
-							newValue = `${yearVal}q${newQuarter}`;
-							break;
-						}
-						case "month": {
-							newValue = `${yearVal}-01`;
-							break;
-						}
-						case "date": {
-							newValue = `${yearVal}-01-01`;
-							break;
-						}
-						default:
-							break;
-					}
-					valueModel.value = newValue;
-				}
-
-				if (elForm && elFormItem) {
-					elForm.model[elFormItem.prop] = newValue;
-				} else {
-					ctx.emit("update:value", newValue);
-				}
-			}
-		);
-
-		const quarterNumList = ["一", "二", "三", "四"];
-
+	inject: ["elForm", "elFormItem"],
+	data() {
 		return {
-			valueModel,
-			valueFormat,
-			quarterModel,
-			quarterNumList,
+			quarterNumList: ["一", "二", "三", "四"],
 		};
 	},
-});
+	computed: {
+		valueFormat() {
+			return DEFAULT_FORMATS[this.type];
+		},
+		quarterModel() {
+			return (
+				(this.type === "quarter" && this.value.match("q")
+					? this.value.split("q")[1]
+					: dayjs(this.value).quarter().toString()) || "1"
+			);
+		},
+		watchModel() {
+			return [this.value, this.type, this.quarterModel];
+		},
+	},
+	watch: {
+		watchModel(
+			[newValue, newType, newQuarter],
+			[oldValue, oldType, oldQuarter]
+		) {
+			const yearVal = dayjs(newValue.split("q")[0]).format("YYYY");
+
+			if (newQuarter !== oldQuarter) {
+				newValue = `${yearVal}q${newQuarter}`;
+			}
+
+			if (newValue !== oldValue && newType === "quarter") {
+				newValue = `${yearVal}q${newQuarter}`;
+			}
+
+			if (oldType !== newType) {
+				switch (newType) {
+					case "year": {
+						newValue = yearVal;
+						break;
+					}
+					case "quarter": {
+						newValue = `${yearVal}q${newQuarter}`;
+						break;
+					}
+					case "month": {
+						newValue = `${yearVal}-01`;
+						break;
+					}
+					case "date": {
+						newValue = `${yearVal}-01-01`;
+						break;
+					}
+					default:
+						break;
+				}
+				valueModel.value = newValue;
+			}
+
+			if (elForm && elFormItem) {
+				elForm.model[elFormItem.prop] = newValue;
+			} else {
+				ctx.emit("update:value", newValue);
+			}
+		},
+	},
+};
 </script>

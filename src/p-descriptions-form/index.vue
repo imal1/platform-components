@@ -1,7 +1,7 @@
 <!--
  * @Author: imali
  * @Date: 2022-02-21 20:03:59
- * @LastEditTime: 2022-03-28 16:33:23
+ * @LastEditTime: 2022-03-29 11:04:25
  * @LastEditors: imali
  * @Description:
 -->
@@ -46,10 +46,9 @@
 	</el-form>
 </template>
 <script>
-import { computed, defineComponent } from "@vue/composition-api";
 import { omit, keys, isFunction, pickBy } from "lodash";
 
-export default defineComponent({
+export default {
 	name: "p-descriptions-form",
 	props: {
 		items: {
@@ -62,13 +61,12 @@ export default defineComponent({
 			default: () => ({}),
 		},
 	},
-	setup(props) {
-		// 获取各栏属性
-		const formItems = computed(() =>
-			props.items.map((item) => {
+	computed: {
+		formItems() {
+			return this.items.map((item) => {
 				const { content, label, icon, descriptions, ...otherItem } = item;
 				const columnEvents = pickBy(otherItem, isFunction);
-				const columnAttrs = omit(otherItem, keys(columnEvents.value));
+				const columnAttrs = omit(otherItem, keys(columnEvents));
 				item = {
 					content,
 					label,
@@ -81,18 +79,14 @@ export default defineComponent({
 				if (item.content?.is) {
 					const { is, ...otherContent } = content;
 					const contentEvents = pickBy(otherContent, isFunction);
-					const contentAttrs = omit(otherContent, keys(contentEvents.value));
+					const contentAttrs = omit(otherContent, keys(contentEvents));
 					item.content = { is, contentEvents, contentAttrs };
 				}
 				return item;
-			})
-		);
-
-		return {
-			formItems,
-		};
+			});
+		},
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 .el-descriptions {

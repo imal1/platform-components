@@ -65,10 +65,9 @@
 	</div>
 </template>
 <script>
-import { computed, defineComponent } from "@vue/composition-api";
 import { pickBy, omit, keys, isFunction, isNil } from "lodash";
 
-export default defineComponent({
+export default {
 	name: "p-table",
 	props: {
 		columns: {
@@ -90,19 +89,18 @@ export default defineComponent({
 			},
 		},
 	},
-	setup(props) {
-		const paginEvents = computed(() => pickBy(props.pagination, isFunction));
-		const paginAttrs = computed(() =>
-			omit(props.pagination, keys(paginEvents.value))
-		);
-
-		return {
-			paginEvents,
-			paginAttrs,
-			isNil,
-		};
+	data() {
+		return { isNil };
 	},
-});
+	computed: {
+		paginEvents() {
+			return pickBy(this.pagination, isFunction);
+		},
+		paginAttrs() {
+			return omit(this.pagination, keys(this.paginEvents));
+		},
+	},
+};
 </script>
 <style lang="scss" scoped>
 ::v-deep .el-pagination {

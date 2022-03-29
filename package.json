@@ -1,6 +1,6 @@
 {
 	"name": "@imal1/platform-components",
-	"version": "1.0.3-26",
+	"version": "1.0.3-27",
 	"description": "platform components init",
 	"main": "bundle.js",
 	"author": "imali",
@@ -20,7 +20,6 @@
 	"devDependencies": {
 		"@babel/core": "^7.17.8",
 		"@babel/preset-env": "^7.16.11",
-		"@vue/composition-api": "^1.4.9",
 		"dayjs": "^1.11.0",
 		"element-ui": "^2.15.6",
 		"lodash": "^4.17.21",
