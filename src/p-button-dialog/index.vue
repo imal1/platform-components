@@ -1,7 +1,7 @@
 <!--
  * @Author: imali
  * @Date: 2022-03-10 01:10:22
- * @LastEditTime: 2022-03-29 13:42:13
+ * @LastEditTime: 2022-03-29 13:44:15
  * @LastEditors: imali
  * @Description: 
 -->
@@ -47,7 +47,7 @@ export default {
 				return this.visible;
 			},
 			set(v) {
-				if (v !== this.visible) {
+				if (v !== this.dialogVisible) {
 					this.$emit("update:visible", v);
 				}
 			},
