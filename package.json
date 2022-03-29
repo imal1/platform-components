@@ -1,6 +1,6 @@
 {
 	"name": "@imal1/platform-components",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"description": "platform components init",
 	"main": "bundle.js",
 	"author": "imali",
