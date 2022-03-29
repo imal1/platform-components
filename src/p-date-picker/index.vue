@@ -1,7 +1,7 @@
 <!--
  * @Author: imali
  * @Date: 2021-10-14 09:35:17
- * @LastEditTime: 2022-03-28 16:21:15
+ * @LastEditTime: 2022-03-28 18:08:02
  * @LastEditors: imali
  * @Description:
 -->
@@ -44,7 +44,7 @@ import {
 	inject,
 	computed,
 } from "@vue/composition-api";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 
 const DEFAULT_FORMATS = {
 	date: "yyyy-MM-dd",

@@ -1,7 +1,7 @@
 /*
  * @Author: imali
  * @Date: 2022-03-28 14:02:28
- * @LastEditTime: 2022-03-28 16:28:05
+ * @LastEditTime: 2022-03-29 09:37:27
  * @LastEditors: imali
  * @Description:
  */
@@ -14,6 +14,7 @@ import { terser } from "rollup-plugin-terser";
 export default {
 	input: "src/index.js",
 	output: {
+		name: "platform-components",
 		file: "bundle.js",
 		format: "umd",
 		globals: {
@@ -31,7 +32,7 @@ export default {
 			exclude: "**/node_modules/**",
 			presets: ["@vue/babel-preset-jsx"],
 		}),
-		terser(),
+		// terser(),
 	],
-	external: ["@vue/composition-api", "lodash", "dayjs", "element-ui"],
+	external: ["vue", "@vue/composition-api", "lodash", "dayjs", "element-ui"],
 };
