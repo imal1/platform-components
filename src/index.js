@@ -1,12 +1,12 @@
 /*
  * @Author: imali
  * @Date: 2022-03-28 14:02:58
- * @LastEditTime: 2022-03-29 09:47:52
+ * @LastEditTime: 2022-03-29 10:00:06
  * @LastEditors: imali
  * @Description:
  */
-import VueCompositionApi from "CompositionApi";
-import ElementUI from "ElementUI";
+import VueCompositionApi from "@vue/composition-api";
+import ElementUI from "element-ui";
 
 import PForm from "./p-form/index.vue";
 import PTable from "./p-table/index.vue";
