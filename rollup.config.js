@@ -1,7 +1,7 @@
 /*
  * @Author: imali
  * @Date: 2022-03-28 14:02:28
- * @LastEditTime: 2022-03-29 11:36:48
+ * @LastEditTime: 2022-03-29 13:29:13
  * @LastEditors: imali
  * @Description:
  */
@@ -32,7 +32,7 @@ export default {
 			exclude: "**/node_modules/**",
 			presets: ["@vue/babel-preset-jsx"],
 		}),
-		// terser(),
+		terser(),
 	],
 	external: ["vue", "lodash", "dayjs", "element-ui"],
 };
