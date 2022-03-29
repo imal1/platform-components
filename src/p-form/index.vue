@@ -4,7 +4,7 @@
  * @Author: imali
  * @Date: 2021-07-14 13:30:41
  * @LastEditors: imali
- * @LastEditTime: 2022-03-29 11:03:29
+ * @LastEditTime: 2022-03-29 11:21:24
 -->
 
 <template>
@@ -44,7 +44,7 @@
 
 <script>
 import { omit, keys, isFunction, pickBy, isArray } from "lodash";
-import DatePicker from "./p-date-picker.vue";
+import DatePicker from "../p-date-picker/index.vue";
 
 export default {
 	name: "p-form",
