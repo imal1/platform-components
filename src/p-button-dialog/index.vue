@@ -1,7 +1,7 @@
 <!--
  * @Author: imali
  * @Date: 2022-03-10 01:10:22
- * @LastEditTime: 2022-03-29 11:02:49
+ * @LastEditTime: 2022-03-29 13:20:58
  * @LastEditors: imali
  * @Description: 
 -->
@@ -36,20 +36,27 @@ export default {
 			type: Object,
 			required: true,
 		},
-	},
-	data() {
-		return {
-			visible: isBoolean(this.$attrs.visible) ? this.$attrs.visible : false,
-		};
+		visible: {
+			type: Boolean,
+			default: () => false,
+		},
 	},
 	computed: {
+		dialogVisible: {
+			getter() {
+				return this.visible;
+			},
+			setter(v) {
+				this.$emit("update:visible", v);
+			},
+		},
 		buttonEvents() {
 			const events = pickBy(this.button, isFunction);
 			events.click = async () => {
 				if (click) {
 					await events.click();
 				}
-				this.visible = true;
+				this.dialogVisible = true;
 			};
 			return events;
 		},

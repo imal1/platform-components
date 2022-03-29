@@ -1,7 +1,7 @@
 <!--
  * @Author: imali
  * @Date: 2021-10-14 09:35:17
- * @LastEditTime: 2022-03-29 11:13:31
+ * @LastEditTime: 2022-03-29 13:17:06
  * @LastEditors: imali
  * @Description:
 -->
@@ -128,7 +128,7 @@ export default {
 			if (elForm && elFormItem) {
 				elForm.model[elFormItem.prop] = newValue;
 			} else {
-				ctx.emit("update:value", newValue);
+				this.$emit("update:value", newValue);
 			}
 		},
 	},
