@@ -4,7 +4,7 @@
  * @Author: imali
  * @Date: 2021-07-14 13:30:41
  * @LastEditors: imali
- * @LastEditTime: 2022-03-29 11:21:24
+ * @LastEditTime: 2022-03-29 11:34:59
 -->
 
 <template>
@@ -92,7 +92,7 @@ export default {
 	},
 };
 </script>
-<style lang="scss" scoped>
+<style scoped>
 ::v-deep .el-range-separator {
 	min-width: 18px;
 }

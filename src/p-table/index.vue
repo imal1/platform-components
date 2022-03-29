@@ -102,25 +102,23 @@ export default {
 	},
 };
 </script>
-<style lang="scss" scoped>
+<style scoped>
 ::v-deep .el-pagination {
 	margin-top: 8px;
 	text-align: right;
 }
-::v-deep .el-table {
-	.el-table-row {
-		height: 40px;
-		font-size: 14px;
-	}
-	.el-table__row--level-0 {
-		font-size: 15px;
-		height: 42px;
-		font-weight: bold;
-		color: #58c1ee;
-	}
-	.el-table__row--level-1 {
-		font-weight: 500;
-		color: #58c1ee;
-	}
+::v-deep .el-table .el-table-row {
+	height: 40px;
+	font-size: 14px;
+}
+::v-deep .el-table .el-table__row--level-0 {
+	font-size: 15px;
+	height: 42px;
+	font-weight: bold;
+	color: #58c1ee;
+}
+::v-deep .el-table .el-table__row--level-1 {
+	font-weight: 500;
+	color: #58c1ee;
 }
 </style>
