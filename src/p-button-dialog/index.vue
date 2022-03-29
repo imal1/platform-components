@@ -1,7 +1,7 @@
 <!--
  * @Author: imali
  * @Date: 2022-03-10 01:10:22
- * @LastEditTime: 2022-03-29 13:25:32
+ * @LastEditTime: 2022-03-29 13:38:56
  * @LastEditors: imali
  * @Description: 
 -->
@@ -43,10 +43,10 @@ export default {
 	},
 	computed: {
 		dialogVisible: {
-			getter() {
+			get() {
 				return this.visible;
 			},
-			setter(v) {
+			set(v) {
 				this.$emit("update:visible", v);
 			},
 		},
