@@ -1,13 +1,13 @@
 <!--
  * @Author: imali
  * @Date: 2022-03-10 01:10:22
- * @LastEditTime: 2022-03-29 13:44:15
+ * @LastEditTime: 2022-03-30 11:59:09
  * @LastEditors: imali
- * @Description: 
+ * @Description:
 -->
 <template>
 	<span class="p-button-dialog" ref="p-button-dialog">
-		<el-button v-bind="buttonAttrs" v-on="buttonEvents">
+		<el-button v-if="button" v-bind="buttonAttrs" v-on="buttonEvents">
 			<template v-if="button.label">
 				{{ button.label }}
 			</template>
@@ -15,7 +15,8 @@
 				<slot name="button" />
 			</template>
 		</el-button>
-		<el-dialog v-bind="$attrs" v-on="$listeners" :visible.sync="visible">
+		<slot v-else name="trigger" />
+		<el-dialog v-bind="$attrs" v-on="$listeners" :visible.sync="dialogVisible">
 			<template v-if="!$attrs.title" #title>
 				<slot name="title" />
 			</template>
@@ -27,36 +28,32 @@
 	</span>
 </template>
 <script>
-import { omit, keys, isFunction, pickBy, isBoolean } from "lodash";
+import { omit, keys, isFunction, pickBy } from "lodash";
 
 export default {
 	name: "p-button-dialog",
 	props: {
 		button: {
 			type: Object,
-			required: true,
+			default: () => null,
 		},
 		visible: {
 			type: Boolean,
 			default: () => false,
 		},
 	},
+	data() {
+		return {
+			dialogVisible: false,
+		};
+	},
 	computed: {
-		dialogVisible: {
-			get() {
-				return this.visible;
-			},
-			set(v) {
-				if (v !== this.dialogVisible) {
-					this.$emit("update:visible", v);
-				}
-			},
-		},
 		buttonEvents() {
 			const events = pickBy(this.button, isFunction);
+			const { click } = events;
 			events.click = async () => {
-				if (events.click) {
-					await events.click();
+				if (click) {
+					await click();
 				}
 				this.dialogVisible = true;
 			};
@@ -64,6 +61,14 @@ export default {
 		},
 		buttonAttrs() {
 			return omit(this.button, keys(this.buttonEvents));
+		},
+	},
+	watch: {
+		visible: {
+			handler(newVisible) {
+				this.dialogVisible = newVisible;
+			},
+			immediate: true,
 		},
 	},
 };
