@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<fragment>
 		<el-table
 			ref="p-table"
 			:stripe="isNil($attrs.stripe) ? true : $attrs.stripe"
@@ -62,12 +62,14 @@
 			v-bind="paginAttrs"
 			v-on="paginEvents"
 		/>
-	</div>
+	</fragment>
 </template>
 <script>
+import { Fragment } from "vue-fragment";
 import { pickBy, omit, keys, isFunction, isNil } from "lodash";
 
 export default {
+	components: { Fragment },
 	name: "p-table",
 	props: {
 		columns: {
