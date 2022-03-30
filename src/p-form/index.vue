@@ -4,7 +4,7 @@
  * @Author: imali
  * @Date: 2021-07-14 13:30:41
  * @LastEditors: imali
- * @LastEditTime: 2022-03-30 15:32:11
+ * @LastEditTime: 2022-03-30 15:36:28
 -->
 
 <template>
@@ -25,9 +25,12 @@
 					<span v-if="item.content.text">{{ item.content.text }}</span>
 					<slot v-else :name="item.columnAttrs['prop']" />
 				</component>
-				<template v-else-if="isArray(item.content)">
+				<template
+					v-else-if="isArray(item.content)"
+					v-for="(c, i) in item.content"
+				>
 					<component
-						v-for="(c, i) in item.content"
+						v-if="c.is"
 						:key="i"
 						:is="c.is"
 						v-model="value[item.columnAttrs['prop']]"
@@ -37,6 +40,7 @@
 						<span v-if="c.text">{{ c.text }}</span>
 						<slot v-else :name="c.name" />
 					</component>
+					<slot v-else :name="c.name" />
 				</template>
 				<slot v-else :name="item.columnAttrs['prop']" />
 			</el-form-item>
