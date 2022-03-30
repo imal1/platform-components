@@ -1,12 +1,12 @@
 <!--
  * @Author: imali
  * @Date: 2022-03-10 01:10:22
- * @LastEditTime: 2022-03-30 13:24:26
+ * @LastEditTime: 2022-03-30 14:06:02
  * @LastEditors: imali
  * @Description:
 -->
 <template>
-	<span class="p-button-dialog" ref="p-button-dialog">
+	<fragment ref="p-button-dialog">
 		<el-button v-if="button" v-bind="buttonAttrs" v-on="buttonEvents">
 			<template v-if="button.label">
 				{{ button.label }}
@@ -25,12 +25,14 @@
 				<slot name="footer" />
 			</template>
 		</el-dialog>
-	</span>
+	</fragment>
 </template>
 <script>
+import { Fragment } from "vue-fragment";
 import { omit, keys, isFunction, pickBy } from "lodash";
 
 export default {
+	components: { Fragment },
 	name: "p-button-dialog",
 	props: {
 		button: {
@@ -73,11 +75,3 @@ export default {
 	},
 };
 </script>
-<style scoped>
-.p-button-dialog {
-	display: inline-block;
-}
-.el-button + .p-button-dialog {
-	margin-left: 10px;
-}
-</style>
