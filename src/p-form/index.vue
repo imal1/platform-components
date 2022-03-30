@@ -4,7 +4,7 @@
  * @Author: imali
  * @Date: 2021-07-14 13:30:41
  * @LastEditors: imali
- * @LastEditTime: 2022-03-29 11:34:59
+ * @LastEditTime: 2022-03-30 15:16:21
 -->
 
 <template>
@@ -22,7 +22,8 @@
 					v-bind="item.content.contentAttrs"
 					v-on="item.content.contentEvents"
 				>
-					<slot :name="item.columnAttrs['prop']" />
+					<span v-if="c.text">{{ c.text }}</span>
+					<slot v-else :name="item.columnAttrs['prop']" />
 				</component>
 				<template v-else-if="isArray(item.content)">
 					<component
@@ -33,7 +34,8 @@
 						v-bind="c.contentAttrs"
 						v-on="c.contentEvents"
 					>
-						{{ c.text }}
+						<span v-if="c.text">{{ c.text }}</span>
+						<slot v-else :name="c.name" />
 					</component>
 				</template>
 				<slot v-else :name="item.columnAttrs['prop']" />
@@ -80,10 +82,10 @@ export default {
 					item.content = { is, contentEvents, contentAttrs };
 				} else if (isArray(item.content)) {
 					item.content.forEach((c, i) => {
-						const { is, text, ...otherContent } = c;
+						const { is, text, name, ...otherContent } = c;
 						const contentEvents = pickBy(otherContent, isFunction);
 						const contentAttrs = omit(otherContent, keys(contentEvents));
-						item.content[i] = { is, text, contentEvents, contentAttrs };
+						item.content[i] = { is, text, name, contentEvents, contentAttrs };
 					});
 				}
 				return item;
