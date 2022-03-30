@@ -4,7 +4,7 @@
  * @Author: imali
  * @Date: 2021-07-14 13:30:41
  * @LastEditors: imali
- * @LastEditTime: 2022-03-30 15:16:21
+ * @LastEditTime: 2022-03-30 15:32:11
 -->
 
 <template>
@@ -22,7 +22,7 @@
 					v-bind="item.content.contentAttrs"
 					v-on="item.content.contentEvents"
 				>
-					<span v-if="c.text">{{ c.text }}</span>
+					<span v-if="item.content.text">{{ item.content.text }}</span>
 					<slot v-else :name="item.columnAttrs['prop']" />
 				</component>
 				<template v-else-if="isArray(item.content)">
@@ -76,10 +76,10 @@ export default {
 				item = { content, columnAttrs, columnEvents };
 				// 获取输入框属性
 				if (item.content?.is) {
-					const { is, ...otherContent } = content;
+					const { is, text, ...otherContent } = content;
 					const contentEvents = pickBy(otherContent, isFunction);
 					const contentAttrs = omit(otherContent, keys(contentEvents));
-					item.content = { is, contentEvents, contentAttrs };
+					item.content = { is, text, contentEvents, contentAttrs };
 				} else if (isArray(item.content)) {
 					item.content.forEach((c, i) => {
 						const { is, text, name, ...otherContent } = c;
