@@ -1,0 +1,33 @@
+.p-descriptions-form {
+	.el-form-item {
+		margin: 0;
+		width: 100%;
+	}
+	.el-descriptions-item__label {
+		line-height: 32px;
+	}
+	.el-form-item__content,
+	.el-select,
+	.el-cascader,
+	.el-autocomplete,
+	.el-date-editor {
+		width: 100%;
+	}
+	.el-input__inner,
+	.el-textarea__inner {
+		border: none;
+		padding: 0;
+		background: #fff;
+	}
+	.el-input__inner {
+		width: calc(100% - 30px);
+	}
+	.el-date-editor .el-input__prefix {
+		display: none;
+	}
+	.is-disabled > input,
+	.is-disabled > .el-radio__label,
+	.is-disabled > .el-textarea__inner {
+		color: #606266;
+	}
+}

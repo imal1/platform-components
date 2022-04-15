@@ -2,6 +2,7 @@
 	<fragment>
 		<el-table
 			ref="p-table"
+			class="p-table"
 			:stripe="isNil($attrs.stripe) ? true : $attrs.stripe"
 			:border="isNil($attrs.border) ? true : $attrs.border"
 			:default-expand-all="
@@ -57,6 +58,7 @@
 			</template>
 		</el-table>
 		<el-pagination
+			class="p-pagination"
 			v-if="pagination"
 			background
 			v-bind="paginAttrs"
@@ -67,6 +69,7 @@
 <script>
 import { Fragment } from "vue-fragment";
 import { pickBy, omit, keys, isFunction, isNil } from "lodash";
+import "./index.scss";
 
 export default {
 	components: { Fragment },
@@ -104,23 +107,3 @@ export default {
 	},
 };
 </script>
-<style scoped>
-::v-deep .el-pagination {
-	margin-top: 8px;
-	text-align: right;
-}
-::v-deep .el-table .el-table-row {
-	height: 40px;
-	font-size: 14px;
-}
-::v-deep .el-table .el-table__row--level-0 {
-	font-size: 15px;
-	height: 42px;
-	font-weight: bold;
-	color: #58c1ee;
-}
-::v-deep .el-table .el-table__row--level-1 {
-	font-weight: 500;
-	color: #58c1ee;
-}
-</style>

@@ -1,0 +1,51 @@
+.p-form .el-range-separator {
+  min-width: 18px;
+}.p-table .el-table .el-table-row {
+  height: 40px;
+  font-size: 14px;
+}
+.p-table .el-table .el-table__row--level-0 {
+  font-size: 15px;
+  height: 42px;
+  font-weight: bold;
+  color: #58c1ee;
+}
+.p-table .el-table .el-table__row--level-1 {
+  font-weight: 500;
+  color: #58c1ee;
+}
+
+.p-pagination {
+  margin-top: 8px;
+  text-align: right;
+}.p-descriptions-form .el-form-item {
+  margin: 0;
+  width: 100%;
+}
+.p-descriptions-form .el-descriptions-item__label {
+  line-height: 32px;
+}
+.p-descriptions-form .el-form-item__content,
+.p-descriptions-form .el-select,
+.p-descriptions-form .el-cascader,
+.p-descriptions-form .el-autocomplete,
+.p-descriptions-form .el-date-editor {
+  width: 100%;
+}
+.p-descriptions-form .el-input__inner,
+.p-descriptions-form .el-textarea__inner {
+  border: none;
+  padding: 0;
+  background: #fff;
+}
+.p-descriptions-form .el-input__inner {
+  width: calc(100% - 30px);
+}
+.p-descriptions-form .el-date-editor .el-input__prefix {
+  display: none;
+}
+.p-descriptions-form .is-disabled > input,
+.p-descriptions-form .is-disabled > .el-radio__label,
+.p-descriptions-form .is-disabled > .el-textarea__inner {
+  color: #606266;
+}

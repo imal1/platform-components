@@ -4,11 +4,17 @@
  * @Author: imali
  * @Date: 2021-07-14 13:30:41
  * @LastEditors: imali
- * @LastEditTime: 2022-03-30 16:16:31
+ * @LastEditTime: 2022-04-15 11:18:53
 -->
 
 <template>
-	<el-form ref="p-form" :model="value" v-bind="$attrs" v-on="$listeners">
+	<el-form
+		ref="p-form"
+		class="p-form"
+		:model="value"
+		v-bind="$attrs"
+		v-on="$listeners"
+	>
 		<template v-for="item in formItems">
 			<el-form-item
 				:key="item.columnAttrs['prop']"
@@ -51,6 +57,7 @@
 <script>
 import { omit, keys, isFunction, pickBy, isArray } from "lodash";
 import DatePicker from "../p-date-picker/index.vue";
+import "./index.scss";
 
 export default {
 	name: "p-form",
@@ -98,8 +105,3 @@ export default {
 	},
 };
 </script>
-<style scoped>
-::v-deep .el-range-separator {
-	min-width: 18px;
-}
-</style>

@@ -1,13 +1,14 @@
 <!--
  * @Author: imali
  * @Date: 2022-02-21 20:03:59
- * @LastEditTime: 2022-03-29 11:34:52
+ * @LastEditTime: 2022-04-15 11:20:55
  * @LastEditors: imali
  * @Description:
 -->
 <template>
 	<el-form
 		ref="p-descriptions-form"
+		class="p-descriptions-form"
 		inline
 		:model="value"
 		v-bind="$attrs"
@@ -47,6 +48,7 @@
 </template>
 <script>
 import { omit, keys, isFunction, pickBy } from "lodash";
+import "./index.scss";
 
 export default {
 	name: "p-descriptions-form",
@@ -88,36 +90,3 @@ export default {
 	},
 };
 </script>
-<style scoped>
-.el-form-item {
-	margin: 0;
-	width: 100%;
-}
-::v-deep .el-descriptions-item__label {
-	line-height: 32px;
-}
-::v-deep .el-form-item__content,
-::v-deep .el-select,
-::v-deep .el-cascader,
-::v-deep .el-autocomplete,
-::v-deep .el-date-editor {
-	width: 100%;
-}
-::v-deep .el-input__inner,
-::v-deep .el-textarea__inner {
-	border: none;
-	padding: 0;
-	background: #fff;
-}
-::v-deep .el-input__inner {
-	width: calc(100% - 30px);
-}
-::v-deep .el-date-editor .el-input__prefix {
-	display: none;
-}
-::v-deep .is-disabled > input,
-::v-deep .is-disabled > .el-radio__label,
-::v-deep .is-disabled > .el-textarea__inner {
-	color: #606266;
-}
-</style>
