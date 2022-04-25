@@ -4,7 +4,7 @@
  * @Author: imali
  * @Date: 2021-07-14 13:30:41
  * @LastEditors: imali
- * @LastEditTime: 2022-04-25 13:31:34
+ * @LastEditTime: 2022-04-25 17:26:02
 -->
 
 <template>
@@ -18,16 +18,16 @@
 		<template v-for="item in formItems">
 			<el-form-item
 				:key="item.columnAttrs['prop']"
-				:set-v="(v = get(value, item.columnAttrs['prop']))"
 				v-bind="item.columnAttrs"
 				v-on="item.columnEvents"
 			>
 				<component
 					:is="item.content.is"
 					v-if="item.content && item.content.is"
-					v-model="v"
+					:value="get(value, item.columnAttrs['prop'])"
 					v-bind="item.content.contentAttrs"
 					v-on="item.content.contentEvents"
+					@input="$set(value, item.columnAttrs['prop'], $event)"
 				>
 					<span v-if="item.content.text">{{ item.content.text }}</span>
 					<slot v-else :name="item.columnAttrs['prop']" />
@@ -40,9 +40,10 @@
 						v-if="c.is"
 						:key="i"
 						:is="c.is"
-						v-model="v"
+						:value="get(value, item.columnAttrs['prop'])"
 						v-bind="c.contentAttrs"
 						v-on="c.contentEvents"
+						@input="$set(value, item.columnAttrs['prop'], $event)"
 					>
 						<span v-if="c.text">{{ c.text }}</span>
 						<slot v-else :name="c.name" />
