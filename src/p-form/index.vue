@@ -4,7 +4,7 @@
  * @Author: imali
  * @Date: 2021-07-14 13:30:41
  * @LastEditors: imali
- * @LastEditTime: 2022-04-15 11:18:53
+ * @LastEditTime: 2022-04-25 13:31:34
 -->
 
 <template>
@@ -18,13 +18,14 @@
 		<template v-for="item in formItems">
 			<el-form-item
 				:key="item.columnAttrs['prop']"
+				:set-v="(v = get(value, item.columnAttrs['prop']))"
 				v-bind="item.columnAttrs"
 				v-on="item.columnEvents"
 			>
 				<component
 					:is="item.content.is"
 					v-if="item.content && item.content.is"
-					v-model="value[item.columnAttrs['prop']]"
+					v-model="v"
 					v-bind="item.content.contentAttrs"
 					v-on="item.content.contentEvents"
 				>
@@ -39,7 +40,7 @@
 						v-if="c.is"
 						:key="i"
 						:is="c.is"
-						v-model="value[item.columnAttrs['prop']]"
+						v-model="v"
 						v-bind="c.contentAttrs"
 						v-on="c.contentEvents"
 					>
@@ -55,7 +56,7 @@
 </template>
 
 <script>
-import { omit, keys, isFunction, pickBy, isArray } from "lodash";
+import { omit, keys, isFunction, pickBy, isArray, get } from "lodash";
 import DatePicker from "../p-date-picker/index.vue";
 import "./index.scss";
 
@@ -76,6 +77,7 @@ export default {
 	data() {
 		return {
 			isArray,
+			get,
 		};
 	},
 	computed: {
